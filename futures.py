@@ -11,6 +11,7 @@ def get_symbol_prices(symbol, expiry):
         "FUTSTK",
         period="1D",
     )
+    print(f"found ${len(data)} records")
     for row in data.iterrows():
         if row[1]["EXPIRY_DT"] == expiry:
             return {
@@ -45,5 +46,9 @@ def get_future_data():
 def ping():
     return "Pong"
 
-if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+# if __name__ == '__main__':
+#     app.run(debug=True, host='0.0.0.0', port=5000)
+
+nearest_expiry = get_nearest_expiry()
+stock_data = get_symbol_prices("AARTIIND", nearest_expiry)
+print(stock_data)
